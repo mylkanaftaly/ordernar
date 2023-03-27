@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Minha aplicação web</title>
+    <style>
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        width: 300px;
+      }
+
+      
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      #add-button {
+        background-color: #008CBA;
+      }
+      #sort-button {
+        background-color: #f44336;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Minha aplicação web</h1>
+    <p>Insira um item na lista:</p>
+    <input type="text" id="input-text">
+    <button id="add-button">Adicionar</button>
+    <button id="sort-button">Ordenar</button>
+    <ul id="list"></ul>
+    <script>
+      
+      function addItem() {
+        const inputText = document.getElementById("input-text");
+        const list = document.getElementById("list");
+        const item = document.createElement("li");
+        item.innerText = inputText.value;
+        list.appendChild(item);
+        inputText.value = "";
+      }
+
+     
+      function sortList() {
+        const list = document.getElementById("list");
+        const items = list.getElementsByTagName("li");
+        const sortedItems = Array.from(items).sort((a, b) => a.innerText.localeCompare(b.innerText));
+        for (let item of sortedItems) {
+          list.appendChild(item);
+        }
+      }
+
+     
+      document.getElementById("add-button").addEventListener("click", addItem);
+      document.getElementById("sort-button").addEventListener("click", sortList);
+    </script>
+  </body>
+</html>
